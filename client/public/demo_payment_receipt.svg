@@ -32,10 +32,10 @@
   <!-- Transaction Details -->
   <g font-family="Arial, sans-serif" font-size="12" fill="#718078">
     <text x="40" y="340">Student Name</text>
-    <text x="360" y="340" text-anchor="end" font-weight="bold" fill="#26352E">Rohan Rao</text>
+    <text x="360" y="340" text-anchor="end" font-weight="bold" fill="#26352E">Keerthana</text>
 
     <text x="40" y="380">Paid By</text>
-    <text x="360" y="380" text-anchor="end" font-weight="bold" fill="#26352E">Vikram Rao</text>
+    <text x="360" y="380" text-anchor="end" font-weight="bold" fill="#26352E">K. Narayanan</text>
 
     <text x="40" y="420">UPI Reference / UTR</text>
     <text x="360" y="420" text-anchor="end" font-family="monospace" font-weight="bold" fill="#26352E">428719283744</text>

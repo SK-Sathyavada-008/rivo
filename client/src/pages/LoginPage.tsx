@@ -83,7 +83,7 @@ export const LoginPage: React.FC = () => {
           </div>
 
           <p className="text-xs text-emerald-100 leading-relaxed">
-            Explore <strong>Naatyavedam</strong> pre-loaded with 14 students, 4 batches, sibling payments, WhatsApp evidence, and bank reconciliation exceptions.
+            Explore <strong>Naatyavedam</strong> pre-loaded with batches (Super Seniors, Seniors, Juniors, Sub Juniors, EIPL, EIPL Adults) and sample students (Keerthana, Roopa, Alekhya, Priyanka, Laalasa, Lahari, Amritha).
           </p>
 
           <Button

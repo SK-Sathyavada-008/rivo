@@ -29,76 +29,117 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
   console.log(`[Seed] Cleaned old records for teacher ${tId}`);
 
   // 2. Create Batches
-  const batch1 = await Batch.create({
+  const batchSuperSeniors = await Batch.create({
     teacherId: tId,
-    name: 'Bharatnatyam - Beginners (Batch A)',
+    name: 'Super Seniors',
+    schedule: 'Mon, Wed, Fri (6:00 PM - 7:30 PM)',
+    instructor: 'Ananya Natarajan',
+    isActive: true,
+  });
+
+  const batchSeniors = await Batch.create({
+    teacherId: tId,
+    name: 'Seniors',
+    schedule: 'Tue, Thu, Sat (5:30 PM - 7:00 PM)',
+    instructor: 'Ananya Natarajan',
+    isActive: true,
+  });
+
+  const batchJuniors = await Batch.create({
+    teacherId: tId,
+    name: 'Juniors',
     schedule: 'Mon, Wed, Fri (4:30 PM - 5:30 PM)',
     instructor: 'Ananya Natarajan',
     isActive: true,
   });
 
-  const batch2 = await Batch.create({
+  const batchSubJuniors = await Batch.create({
     teacherId: tId,
-    name: 'Bharatnatyam - Intermediate (Batch B)',
-    schedule: 'Tue, Thu, Sat (5:00 PM - 6:30 PM)',
+    name: 'Sub Juniors',
+    schedule: 'Saturday & Sunday (10:00 AM - 11:00 AM)',
     instructor: 'Ananya Natarajan',
     isActive: true,
   });
 
-  const batch3 = await Batch.create({
+  const batchEIPL = await Batch.create({
     teacherId: tId,
-    name: 'Contemporary & Folk Dance (Weekend)',
-    schedule: 'Sat & Sun (9:00 AM - 10:30 AM)',
+    name: 'EIPL',
+    schedule: 'Mon & Thu (7:00 PM - 8:30 PM)',
     instructor: 'Kavita Menon',
     isActive: true,
   });
 
-  const batch4 = await Batch.create({
+  const batchEIPLAdults = await Batch.create({
     teacherId: tId,
-    name: 'Kids Creative Movement (Under 8)',
-    schedule: 'Saturday (11:00 AM - 12:00 PM)',
+    name: 'EIPL Adults',
+    schedule: 'Sat & Sun (8:00 AM - 9:30 AM)',
     instructor: 'Ananya Natarajan',
     isActive: true,
   });
 
   // 3. Create Families (Explicit sibling relationships)
-  const familyPatel = await Family.create({
+  const familyRao = await Family.create({
     teacherId: tId,
-    name: 'Patel Family',
-    guardianName: 'Rajesh Patel',
-    guardianPhone: '+91 98200 45678',
-    guardianEmail: 'rajesh.patel@gmail.com',
-    notes: 'Father of Diya and Neil. Prefers paying via GPay in a single combined UPI transaction.',
+    name: 'Rao Family',
+    guardianName: 'Srinivas Rao',
+    guardianPhone: '+91 98455 55667',
+    guardianEmail: 'srinivas.rao@gmail.com',
+    notes: 'Father of Laalasa and Lahari. Pays via UPI in a single combined payment.',
   });
 
-  const familyIyer = await Family.create({
-    teacherId: tId,
-    name: 'Iyer Family',
-    guardianName: 'Subramanian Iyer',
-    guardianPhone: '+91 98401 23456',
-    guardianEmail: 's.iyer@yahoo.com',
-    notes: 'Father of Aditi and Meenakshi. Both learning classical dance.',
-  });
-
-  // 4. Create Students (14 students across 4 batches)
+  // 4. Create Students (Keerthana, Roopa, Alekhya, Priyanka, Laalasa, Lahari, Amritha)
   const studentsData = [
-    // Patel siblings
-    { name: 'Diya Patel', guardianName: 'Rajesh Patel', guardianPhone: '+91 98200 45678', batchId: batch1._id, familyId: familyPatel._id, monthlyFee: 1500 },
-    { name: 'Neil Patel', guardianName: 'Rajesh Patel', guardianPhone: '+91 98200 45678', batchId: batch4._id, familyId: familyPatel._id, monthlyFee: 1500 },
-    // Iyer siblings
-    { name: 'Aditi Iyer', guardianName: 'Subramanian Iyer', guardianPhone: '+91 98401 23456', batchId: batch2._id, familyId: familyIyer._id, monthlyFee: 2000 },
-    { name: 'Meenakshi Iyer', guardianName: 'Subramanian Iyer', guardianPhone: '+91 98401 23456', batchId: batch1._id, familyId: familyIyer._id, monthlyFee: 1500 },
-    // Individual students
-    { name: 'Aarav Sharma', guardianName: 'Priya Sharma', guardianPhone: '+91 98111 22334', batchId: batch1._id, monthlyFee: 1500 },
-    { name: 'Ananya Verma', guardianName: 'Sunita Verma', guardianPhone: '+91 98333 44556', batchId: batch2._id, monthlyFee: 2000 },
-    { name: 'Rohan Rao', guardianName: 'Vikram Rao', guardianPhone: '+91 98444 55667', batchId: batch1._id, monthlyFee: 1500 },
-    { name: 'Ishaan Joshi', guardianName: 'Meera Joshi', guardianPhone: '+91 98555 66778', batchId: batch2._id, monthlyFee: 2000 },
-    { name: 'Tanvi Kulkarni', guardianName: 'Amit Kulkarni', guardianPhone: '+91 98666 77889', batchId: batch3._id, monthlyFee: 1800 },
-    { name: 'Siddharth Nair', guardianName: 'Deepa Nair', guardianPhone: '+91 98777 88990', batchId: batch3._id, monthlyFee: 1800 },
-    { name: 'Rhea Deshmukh', guardianName: 'Sanjay Deshmukh', guardianPhone: '+91 98888 99001', batchId: batch4._id, monthlyFee: 1200 },
-    { name: 'Arjun Reddy', guardianName: 'Radhika Reddy', guardianPhone: '+91 98999 11223', batchId: batch1._id, monthlyFee: 1500 },
-    { name: 'Pooja Hegde', guardianName: 'Ganesh Hegde', guardianPhone: '+91 97111 33445', batchId: batch2._id, monthlyFee: 2000 },
-    { name: 'Vivaan Kapoor', guardianName: 'Neha Kapoor', guardianPhone: '+91 97222 44556', batchId: batch4._id, monthlyFee: 1200 },
+    {
+      name: 'Keerthana',
+      guardianName: 'K. Narayanan',
+      guardianPhone: '+91 98451 11223',
+      batchId: batchSuperSeniors._id,
+      monthlyFee: 1500,
+    },
+    {
+      name: 'Roopa',
+      guardianName: 'S. Venkat',
+      guardianPhone: '+91 98452 22334',
+      batchId: batchSeniors._id,
+      monthlyFee: 2000,
+    },
+    {
+      name: 'Alekhya',
+      guardianName: 'M. Prasad',
+      guardianPhone: '+91 98453 33445',
+      batchId: batchJuniors._id,
+      monthlyFee: 1500,
+    },
+    {
+      name: 'Priyanka',
+      guardianName: 'R. Sharma',
+      guardianPhone: '+91 98454 44556',
+      batchId: batchSubJuniors._id,
+      monthlyFee: 1500,
+    },
+    {
+      name: 'Laalasa',
+      guardianName: 'Srinivas Rao',
+      guardianPhone: '+91 98455 55667',
+      batchId: batchJuniors._id,
+      familyId: familyRao._id,
+      monthlyFee: 1500,
+    },
+    {
+      name: 'Lahari',
+      guardianName: 'Srinivas Rao',
+      guardianPhone: '+91 98455 55667',
+      batchId: batchSubJuniors._id,
+      familyId: familyRao._id,
+      monthlyFee: 1500,
+    },
+    {
+      name: 'Amritha',
+      guardianName: 'Amritha (Self)',
+      guardianPhone: '+91 98456 66778',
+      batchId: batchEIPLAdults._id,
+      monthlyFee: 2000,
+    },
   ];
 
   const students = await Student.create(
@@ -107,7 +148,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
       teacherId: tId,
       joiningDate: new Date('2026-06-01'),
       isActive: true,
-      notes: 'Demo student record',
+      notes: 'Sample student record',
     }))
   );
 
@@ -135,21 +176,21 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
 
   // 6. Create Confirmed/Verified Transactions & Allocations
 
-  // Case A: Single Student Paid in Full (Aarav Sharma - ₹1,500)
-  const aarav = sMap.get('Aarav Sharma')!;
-  const aaravOb = obMap.get(aarav._id.toString())!;
-  const txnAarav = await PaymentTransaction.create({
+  // Case A: Single Student Paid in Full (Keerthana - ₹1,500)
+  const keerthana = sMap.get('Keerthana')!;
+  const keerthanaOb = obMap.get(keerthana._id.toString())!;
+  const txnKeerthana = await PaymentTransaction.create({
     teacherId: tId,
     transactionReference: '428719283741',
     amount: 1500,
     paymentDate: new Date('2026-10-02T10:15:00Z'),
-    payerName: 'Priya Sharma',
-    description: 'UPI/428719283741/Aarav Sharma Oct fee',
+    payerName: 'K. Narayanan',
+    description: 'UPI/428719283741/Keerthana Oct fee',
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-02T11:00:00Z'),
     verifiedBy: 'Ananya Natarajan',
-    verificationReason: 'Verified against bank credit SMS and WhatsApp receipt',
+    verificationReason: 'Verified against bank credit and WhatsApp receipt',
     allocatedAmount: 1500,
     unallocatedAmount: 0,
     isSiblingPayment: false,
@@ -157,31 +198,31 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
 
   await PaymentAllocation.create({
     teacherId: tId,
-    transactionId: txnAarav._id,
-    studentId: aarav._id,
-    obligationId: aaravOb._id,
+    transactionId: txnKeerthana._id,
+    studentId: keerthana._id,
+    obligationId: keerthanaOb._id,
     billingMonth: currentMonth,
     allocatedAmount: 1500,
-    notes: 'Full payment allocated',
+    notes: 'Full payment allocated for Keerthana',
   });
-  aaravOb.allocatedAmount = 1500;
-  aaravOb.outstandingBalance = 0;
-  aaravOb.status = 'paid';
-  await aaravOb.save();
+  keerthanaOb.allocatedAmount = 1500;
+  keerthanaOb.outstandingBalance = 0;
+  keerthanaOb.status = 'paid';
+  await keerthanaOb.save();
 
-  // Case B: Sibling Payment (Rajesh Patel paid ₹3,000 for Diya [₹1,500] and Neil [₹1,500])
-  const diya = sMap.get('Diya Patel')!;
-  const neil = sMap.get('Neil Patel')!;
-  const diyaOb = obMap.get(diya._id.toString())!;
-  const neilOb = obMap.get(neil._id.toString())!;
+  // Case B: Sibling Payment (Srinivas Rao paid ₹3,000 for Laalasa [₹1,500] and Lahari [₹1,500])
+  const laalasa = sMap.get('Laalasa')!;
+  const lahari = sMap.get('Lahari')!;
+  const laalasaOb = obMap.get(laalasa._id.toString())!;
+  const lahariOb = obMap.get(lahari._id.toString())!;
 
-  const txnPatel = await PaymentTransaction.create({
+  const txnRao = await PaymentTransaction.create({
     teacherId: tId,
     transactionReference: '428719283742',
     amount: 3000,
     paymentDate: new Date('2026-10-03T14:30:00Z'),
-    payerName: 'Rajesh Patel',
-    description: 'UPI/428719283742/Diya and Neil Patel Oct fees',
+    payerName: 'Srinivas Rao',
+    description: 'UPI/428719283742/Laalasa and Lahari Oct fees',
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-03T15:00:00Z'),
@@ -194,47 +235,47 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
 
   await PaymentAllocation.create({
     teacherId: tId,
-    transactionId: txnPatel._id,
-    studentId: diya._id,
-    obligationId: diyaOb._id,
+    transactionId: txnRao._id,
+    studentId: laalasa._id,
+    obligationId: laalasaOb._id,
     billingMonth: currentMonth,
     allocatedAmount: 1500,
-    notes: 'Sibling allocation: Diya Patel (Batch A)',
+    notes: 'Sibling allocation: Laalasa (Juniors)',
   });
-  diyaOb.allocatedAmount = 1500;
-  diyaOb.outstandingBalance = 0;
-  diyaOb.status = 'paid';
-  await diyaOb.save();
+  laalasaOb.allocatedAmount = 1500;
+  laalasaOb.outstandingBalance = 0;
+  laalasaOb.status = 'paid';
+  await laalasaOb.save();
 
   await PaymentAllocation.create({
     teacherId: tId,
-    transactionId: txnPatel._id,
-    studentId: neil._id,
-    obligationId: neilOb._id,
+    transactionId: txnRao._id,
+    studentId: lahari._id,
+    obligationId: lahariOb._id,
     billingMonth: currentMonth,
     allocatedAmount: 1500,
-    notes: 'Sibling allocation: Neil Patel (Kids Creative)',
+    notes: 'Sibling allocation: Lahari (Sub Juniors)',
   });
-  neilOb.allocatedAmount = 1500;
-  neilOb.outstandingBalance = 0;
-  neilOb.status = 'paid';
-  await neilOb.save();
+  lahariOb.allocatedAmount = 1500;
+  lahariOb.outstandingBalance = 0;
+  lahariOb.status = 'paid';
+  await lahariOb.save();
 
-  // Case C: Partial Payment (Ananya Verma fee is ₹2,000, paid ₹1,000)
-  const ananyaV = sMap.get('Ananya Verma')!;
-  const ananyaOb = obMap.get(ananyaV._id.toString())!;
+  // Case C: Partial Payment (Roopa fee is ₹2,000, paid ₹1,000)
+  const roopa = sMap.get('Roopa')!;
+  const roopaOb = obMap.get(roopa._id.toString())!;
   const txnPartial = await PaymentTransaction.create({
     teacherId: tId,
     transactionReference: '428719283743',
     amount: 1000,
     paymentDate: new Date('2026-10-04T09:00:00Z'),
-    payerName: 'Sunita Verma',
-    description: 'UPI/428719283743/Ananya part fee',
+    payerName: 'S. Venkat',
+    description: 'UPI/428719283743/Roopa part fee',
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-04T10:00:00Z'),
     verifiedBy: 'Ananya Natarajan',
-    verificationReason: 'Part payment agreed with parent',
+    verificationReason: 'Part payment agreed with guardian',
     allocatedAmount: 1000,
     unallocatedAmount: 0,
     isSiblingPayment: false,
@@ -243,18 +284,18 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
   await PaymentAllocation.create({
     teacherId: tId,
     transactionId: txnPartial._id,
-    studentId: ananyaV._id,
-    obligationId: ananyaOb._id,
+    studentId: roopa._id,
+    obligationId: roopaOb._id,
     billingMonth: currentMonth,
     allocatedAmount: 1000,
     notes: 'Partial payment 1 of 2',
   });
-  ananyaOb.allocatedAmount = 1000;
-  ananyaOb.outstandingBalance = 1000;
-  ananyaOb.status = 'partially_paid';
-  await ananyaOb.save();
+  roopaOb.allocatedAmount = 1000;
+  roopaOb.outstandingBalance = 1000;
+  roopaOb.status = 'partially_paid';
+  await roopaOb.save();
 
-  // Case D: Unallocated Confirmed Payment (Unknown payer or awaiting allocation - ₹2,500)
+  // Case D: Unallocated Confirmed Payment (Unknown sender - ₹2,500)
   const txnUnallocated = await PaymentTransaction.create({
     teacherId: tId,
     transactionReference: '428719283799',
@@ -270,28 +311,28 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     allocatedAmount: 0,
     unallocatedAmount: 2500,
     isSiblingPayment: false,
-    notes: 'Payer name not in academy roster. Waiting for parent to claim.',
+    notes: 'Payer name not in academy roster. Waiting for student/parent to claim.',
   });
 
   // 7. Payment Evidence Items (Simulated WhatsApp claims)
   const evidence1 = await PaymentEvidence.create({
     teacherId: tId,
     source: 'whatsapp_screenshot',
-    rawText: 'Hi Maam, paid October fees ₹1,500 for Rohan Rao. UPI Ref: 428719283744',
-    claimedStudentName: 'Rohan Rao',
+    rawText: 'Hi Maam, paid October fees ₹1,500 for Alekhya. UPI Ref: 428719283744',
+    claimedStudentName: 'Alekhya',
     claimedAmount: 1500,
     claimedDate: '2026-10-05',
     claimedTransactionReference: '428719283744',
     confidenceScore: 0.95,
     extractionDetails: {
-      student_names: ['Rohan Rao'],
+      student_names: ['Alekhya'],
       claimed_amount: 1500,
       claimed_date: '2026-10-05',
       claimed_transaction_reference: '428719283744',
       claimed_status: 'claimed_successful',
       confidence: 0.95,
       missing_fields: [],
-      explanation: 'Extracted student name, amount ₹1,500, and 12-digit UTR ref from WhatsApp message.',
+      explanation: 'Extracted student name Alekhya, amount ₹1,500, and 12-digit UTR ref from WhatsApp message.',
     },
     extractedBy: 'rule_based_fallback',
     status: 'pending_review',
@@ -300,13 +341,13 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
   const evidence2 = await PaymentEvidence.create({
     teacherId: tId,
     source: 'whatsapp_text',
-    rawText: 'Sent ₹2,000 for Ishaan Bharatanatyam class via PhonePe today.',
-    claimedStudentName: 'Ishaan Joshi',
+    rawText: 'Sent ₹2,000 for Amritha EIPL Adults class via PhonePe today.',
+    claimedStudentName: 'Amritha',
     claimedAmount: 2000,
     claimedDate: '2026-10-06',
     confidenceScore: 0.7,
     extractionDetails: {
-      student_names: ['Ishaan Joshi'],
+      student_names: ['Amritha'],
       claimed_amount: 2000,
       claimed_date: '2026-10-06',
       claimed_transaction_reference: null,
@@ -319,8 +360,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     status: 'pending_review',
   });
 
-  // 8. Exceptions (At least 3 realistic cases)
-
+  // 8. Exceptions
   // Exception 1: Unknown Student
   await ExceptionCase.create({
     teacherId: tId,
@@ -341,8 +381,8 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     claimedAmount: 2000,
     claimedDate: '2026-10-05',
     evidenceSource: 'whatsapp_screenshot',
-    notes: 'Parent submitted screenshot claiming ₹2,000 for Aditi Iyer, but actual fee obligation is ₹2,000 and bank credited ₹1,500.',
-    recommendedAction: 'Check bank statement for actual credit amount or contact guardian Subramanian Iyer.',
+    notes: 'Guardian submitted screenshot claiming ₹2,000 for Priyanka, but fee obligation is ₹1,500 and bank credited ₹1,500.',
+    recommendedAction: 'Check bank statement for actual credit amount or contact guardian R. Sharma.',
   });
 
   // Exception 3: Evidence without Verified Transaction
@@ -354,8 +394,8 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     claimedAmount: 1500,
     claimedDate: '2026-10-05',
     evidenceSource: 'whatsapp_screenshot',
-    notes: 'Payment screenshot received for Rohan Rao with UTR 428719283744, but this reference has not appeared in bank statement export.',
-    recommendedAction: 'Import latest bank CSV statement or request bank payment confirmation SMS from parent.',
+    notes: 'Payment screenshot received for Alekhya with UTR 428719283744, but this reference has not appeared in bank statement export.',
+    recommendedAction: 'Import latest bank CSV statement or request bank payment confirmation SMS from guardian.',
   });
 
   // Exception 4: Unallocated Amount

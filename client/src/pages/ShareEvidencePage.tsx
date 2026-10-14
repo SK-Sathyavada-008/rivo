@@ -86,7 +86,7 @@ export const ShareEvidencePage: React.FC = () => {
     setPreviewUrl(url);
 
     // Simulate OCR text extraction from watermarked screenshot
-    setRawText(`Payment to Naatyavedam\n₹ 1,500.00\nCompleted 14 Oct 2026\nUPI Ref No: 428719283744\nPaid for: Rohan Rao`);
+    setRawText(`Payment to Naatyavedam\n₹ 1,500.00\nCompleted 14 Oct 2026\nUPI Ref No: 428719283744\nPaid for: Keerthana`);
   };
 
   const handleSubmitEvidence = async (e: React.FormEvent) => {
