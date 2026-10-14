@@ -1,0 +1,17 @@
+{
+  "short_name": "Rivo",
+  "name": "Rivo — Fees in Flow",
+  "description": "Mobile-first fee reconciliation and bookkeeping for dance academies and schools",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F7FCF9",
+  "theme_color": "#15966A",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="rivoFlow" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#15966A" />
+      <stop offset="60%" stop-color="#107854" />
+      <stop offset="100%" stop-color="#18392D" />
+    </linearGradient>
+    <linearGradient id="rivoMint" x1="8" y1="12" x2="40" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#DDF7E9" />
+      <stop offset="100%" stop-color="#9DE5BE" />
+    </linearGradient>
+  </defs>
+  <!-- Background soft circle -->
+  <rect width="48" height="48" rx="12" fill="#F7FCF9" />
+  <rect x="1" y="1" width="46" height="46" rx="11" stroke="#E2EBE5" stroke-width="1" />
+  <!-- Secondary soft mint ribbon flow -->
+  <path d="M12 28C16 22 24 34 36 20C38 17.5 40 18 41 20C38 27 28 38 18 36C14 35 12 30 12 28Z" fill="url(#rivoMint)" opacity="0.85" />
+  <!-- Primary flowing ribbon loop representing 'R' and flowing wave -->
+  <path d="M14 36V12H24C30.6 12 34 16 34 21C34 25.5 30.5 28.5 25.5 29.5L34.5 36H28L20 29.5H19V36H14ZM19 25H23.5C26.5 25 28.5 23.5 28.5 20.8C28.5 18 26.5 16.5 23.5 16.5H19V25Z" fill="url(#rivoFlow)" />
+  <!-- Spark dot for dynamic flow -->
+  <circle cx="37" cy="14" r="3" fill="#15966A" />
+</svg>
