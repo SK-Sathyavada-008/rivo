@@ -18,8 +18,8 @@ async function run() {
         email: demoEmail,
         passwordHash,
         name: 'Ananya Natarajan',
-        academyName: 'Nrityanjali Dance Academy',
-        upiId: 'nrityanjali@upi',
+        academyName: 'Naatyavedam',
+        upiId: 'naatyavedam@upi',
         phone: '+91 98450 12345',
         isDemo: true,
       });

@@ -23,8 +23,8 @@
 
   <!-- Large Amount Display -->
   <text x="200" y="230" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="bold" fill="#18392D">₹ 1,500.00</text>
-  <text x="200" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#718078">Paid to Nrityanjali Dance Academy</text>
-  <text x="200" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#718078">UPI ID: nrityanjali@upi</text>
+  <text x="200" y="255" text-anchor="middle" font-family="Arial, sans-serif" font-size="13" fill="#718078">Paid to Naatyavedam</text>
+  <text x="200" y="275" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#718078">UPI ID: naatyavedam@upi</text>
 
   <!-- Divider -->
   <line x1="40" y1="300" x2="360" y2="300" stroke="#E2EBE5" stroke-width="1.5" stroke-dasharray="4 4"/>

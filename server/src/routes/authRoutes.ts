@@ -107,17 +107,61 @@ const LoginSchema = z.object({
 router.post('/login', authRateLimiter, async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = LoginSchema.parse(req.body);
+    const normalizedEmail = email.toLowerCase();
 
-    const user = await User.findOne({ email: email.toLowerCase() });
+    // Check if demo alias
+    const isDemoEmail =
+      normalizedEmail === 'demo.teacher@rivo.app' ||
+      normalizedEmail === 'teacher@naatyavedam.com' ||
+      normalizedEmail === 'demo@naatyavedam.com';
+
+    let user = await User.findOne({
+      $or: [
+        { email: normalizedEmail },
+        ...(isDemoEmail ? [{ email: 'demo.teacher@rivo.app' }, { email: 'teacher@naatyavedam.com' }] : []),
+      ],
+    });
+
+    if (!user && isDemoEmail) {
+      // Auto-provision demo account if not found
+      const salt = await bcrypt.genSalt(10);
+      const passwordHash = await bcrypt.hash('DemoRivo2026!', salt);
+
+      user = await User.create({
+        email: 'demo.teacher@rivo.app',
+        passwordHash,
+        name: 'Ananya Natarajan',
+        academyName: 'Naatyavedam',
+        upiId: 'naatyavedam@upi',
+        phone: '+91 98450 12345',
+        isDemo: true,
+      });
+
+      await seedDemoDataForTeacher(user._id);
+    }
+
     if (!user) {
       res.status(401).json({ error: 'Invalid email or password' });
       return;
     }
 
-    const isMatch = await bcrypt.compare(password, user.passwordHash);
+    // Check password
+    let isMatch = await bcrypt.compare(password, user.passwordHash);
+    // Allow demo convenience passwords if demo account
+    if (!isMatch && user.isDemo && (password === 'DemoRivo2026!' || password.toLowerCase() === 'naatyavedam' || password === 'naatyavedam123')) {
+      isMatch = true;
+    }
+
     if (!isMatch) {
       res.status(401).json({ error: 'Invalid email or password' });
       return;
+    }
+
+    // Ensure academyName is Naatyavedam
+    if (user.isDemo && user.academyName !== 'Naatyavedam') {
+      user.academyName = 'Naatyavedam';
+      user.upiId = 'naatyavedam@upi';
+      await user.save();
     }
 
     const token = generateToken(user);
@@ -159,14 +203,21 @@ router.post('/demo-login', async (req: Request, res: Response): Promise<void> =>
         email: demoEmail,
         passwordHash,
         name: 'Ananya Natarajan',
-        academyName: 'Nrityanjali Dance Academy',
-        upiId: 'nrityanjali@upi',
+        academyName: 'Naatyavedam',
+        upiId: 'naatyavedam@upi',
         phone: '+91 98450 12345',
         isDemo: true,
       });
 
       // Seed rich realistic demo data for the academy
       await seedDemoDataForTeacher(demoUser._id);
+    } else {
+      // Ensure academy name is Naatyavedam
+      if (demoUser.academyName !== 'Naatyavedam') {
+        demoUser.academyName = 'Naatyavedam';
+        demoUser.upiId = 'naatyavedam@upi';
+        await demoUser.save();
+      }
     }
 
     const token = generateToken(demoUser);

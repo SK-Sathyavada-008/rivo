@@ -1,23 +1,30 @@
 import React, { useState } from 'react';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
 import { Button } from '../components/ui/Button.js';
 import { Card } from '../components/ui/Card.js';
-import { Sparkles, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
-  const { login, register, demoLogin } = useAuth();
+  const { user, login, register, demoLogin } = useAuth();
+  const navigate = useNavigate();
   const [isRegister, setIsRegister] = useState(false);
 
   // Form fields
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('demo.teacher@rivo.app');
+  const [password, setPassword] = useState('DemoRivo2026!');
   const [name, setName] = useState('');
-  const [academyName, setAcademyName] = useState('');
+  const [academyName, setAcademyName] = useState('Naatyavedam');
   const [phone, setPhone] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [demoLoading, setDemoLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // If already authenticated, immediately go to dashboard
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,6 +37,7 @@ export const LoginPage: React.FC = () => {
       } else {
         await login(email, password);
       }
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.message || 'Authentication failed');
     } finally {
@@ -42,6 +50,7 @@ export const LoginPage: React.FC = () => {
     setDemoLoading(true);
     try {
       await demoLogin();
+      navigate('/', { replace: true });
     } catch (err: any) {
       setError(err.message || 'Demo login failed');
     } finally {
@@ -74,7 +83,7 @@ export const LoginPage: React.FC = () => {
           </div>
 
           <p className="text-xs text-emerald-100 leading-relaxed">
-            Explore <strong>Nrityanjali Dance Academy</strong> pre-loaded with 14 students, 4 batches, sibling payments, WhatsApp evidence, and bank reconciliation exceptions.
+            Explore <strong>Naatyavedam</strong> pre-loaded with 14 students, 4 batches, sibling payments, WhatsApp evidence, and bank reconciliation exceptions.
           </p>
 
           <Button
