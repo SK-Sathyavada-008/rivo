@@ -3,6 +3,7 @@
 > **A real, mobile-first fee reconciliation and bookkeeping platform for dance academies, music schools, tuition centres, and small educational academies.**
 
 [![Build & Test Status](https://img.shields.io/badge/tests-18%20passed-15966A.svg)](file:///c:/Keerthu/Rivo/server/src/tests/reconciliation.test.ts)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/SK-Sathyavada-008/rivo)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D20-18392D.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/react-19-15966A.svg)](https://react.dev/)
 [![MongoDB](https://img.shields.io/badge/database-MongoDB%20Atlas-15966A.svg)](https://www.mongodb.com/atlas)
@@ -12,8 +13,8 @@
 
 ## 1. Product Vision & Core Promise
 
-Our first use case is an Indian classical dance teacher (e.g. *Ananya Natarajan* at *Nrityanjali Dance Academy*) who:
-- Teaches 60+ students across multiple batches (Beginners, Intermediate, Weekend Folk, Kids Movement).
+Our first use case is an Indian classical dance teacher (*Veda* at *Naatyavedam Dance Academy*) who:
+- Teaches across multiple batches (Super Seniors, Seniors, Juniors, Sub Juniors, EIPL, EIPL Adults).
 - Communicates with parents via existing WhatsApp batch groups.
 - Receives monthly tuition fees via direct UPI (GPay, PhonePe, Paytm, Netbanking).
 - Gets flooded every month with payment screenshots, WhatsApp confirmation texts, and fragmented student names.
