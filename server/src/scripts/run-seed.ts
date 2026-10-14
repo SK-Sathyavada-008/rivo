@@ -17,12 +17,17 @@ async function run() {
       demoUser = await User.create({
         email: demoEmail,
         passwordHash,
-        name: 'Ananya Natarajan',
+        name: 'Veda',
         academyName: 'Naatyavedam',
         upiId: 'naatyavedam@upi',
         phone: '+91 98450 12345',
         isDemo: true,
       });
+    } else {
+      demoUser.name = 'Veda';
+      demoUser.academyName = 'Naatyavedam';
+      demoUser.upiId = 'naatyavedam@upi';
+      await demoUser.save();
     }
 
     console.log(`Seeding demo data for ${demoUser.name} (${demoUser.email})...`);

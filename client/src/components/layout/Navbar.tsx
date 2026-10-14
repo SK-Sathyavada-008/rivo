@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext.js';
-import { RotateCcw, LogOut, Sparkles, Building2, User as UserIcon } from 'lucide-react';
+import { RotateCcw, LogOut, Sparkles, Building2, User as UserIcon, Smartphone } from 'lucide-react';
 import { Badge } from '../ui/Badge.js';
 import { Button } from '../ui/Button.js';
 
 interface NavbarProps {
   onRefresh?: () => void;
+  onOpenSimulator?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onRefresh }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onRefresh, onOpenSimulator }) => {
   const { user, resetDemo, logout } = useAuth();
   const [resetting, setResetting] = useState(false);
 
@@ -43,12 +44,26 @@ export const Navbar: React.FC<NavbarProps> = ({ onRefresh }) => {
         {/* Current Academy Name */}
         <div className="flex items-center gap-1.5 text-sm font-semibold text-[#26352E] bg-[#F7FCF9] px-3 py-1.5 rounded-xl border border-[#E2EBE5]">
           <Building2 className="w-4 h-4 text-[#15966A]" />
-          <span className="truncate max-w-[180px] sm:max-w-xs">{user?.academyName || 'Dance Academy'}</span>
+          <span className="truncate max-w-[140px] sm:max-w-xs">{user?.academyName || 'Naatyavedam'}</span>
         </div>
       </div>
 
-      {/* Right Actions: Demo Badge & User Menu */}
+      {/* Right Actions: Phone Simulator, Demo Badge & User Menu */}
       <div className="flex items-center gap-2 sm:gap-3">
+        {/* Interactive Phone Simulation Button */}
+        {onOpenSimulator && (
+          <button
+            onClick={onOpenSimulator}
+            className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-linear-to-r from-[#18392D] to-[#15966A] text-white hover:opacity-95 text-xs font-bold shadow-sm transition-all cursor-pointer group border border-emerald-700/30"
+            title="Open WhatsApp Mobile Simulator with live parent payment receipts"
+          >
+            <Smartphone className="w-4 h-4 text-emerald-300 group-hover:scale-110 transition-transform" />
+            <span className="hidden sm:inline">📱 Phone Simulator</span>
+            <span className="sm:hidden">📱 Phone</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping hidden md:inline-block" />
+          </button>
+        )}
+
         {user?.isDemo ? (
           <div className="flex items-center gap-2">
             <Badge variant="demo" className="hidden sm:inline-flex">

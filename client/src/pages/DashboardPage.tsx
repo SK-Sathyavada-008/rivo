@@ -13,6 +13,7 @@ import {
   Upload,
   ArrowRight,
   ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -50,6 +51,12 @@ export const DashboardPage: React.FC = () => {
 
   useEffect(() => {
     fetchDashboardData(selectedMonth);
+
+    const handleReconciled = () => {
+      fetchDashboardData(selectedMonth);
+    };
+    window.addEventListener('rivo:evidence-reconciled', handleReconciled);
+    return () => window.removeEventListener('rivo:evidence-reconciled', handleReconciled);
   }, [selectedMonth]);
 
   const handlePrevMonth = () => {
@@ -115,6 +122,30 @@ export const DashboardPage: React.FC = () => {
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
+      </div>
+
+      {/* Phone Simulator Feature Card */}
+      <div className="bg-linear-to-r from-[#18392D] via-[#15966A] to-[#128C7E] rounded-3xl p-4 sm:p-5 text-white shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative overflow-hidden">
+        <div className="space-y-1 relative z-10">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-emerald-100 text-xs font-bold uppercase tracking-wider backdrop-blur-xs">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-300" />
+            <span>Interactive Simulator</span>
+          </div>
+          <h3 className="text-base sm:text-lg font-extrabold tracking-tight">
+            Test Incoming WhatsApp Receipts with Live Phone Simulator
+          </h3>
+          <p className="text-xs text-emerald-100/90 max-w-2xl leading-relaxed">
+            Open a realistic smartphone interface to simulate WhatsApp parent chats (Keerthana, Rao family siblings, Roopa) and trigger real-time OCR extraction & reconciliation into the ledger.
+          </p>
+        </div>
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('rivo:open-simulator'))}
+          className="relative z-10 shrink-0 bg-[#DDF7E9] hover:bg-white text-[#18392D] font-extrabold text-xs sm:text-sm px-4 py-2.5 rounded-2xl shadow-md transition-all cursor-pointer flex items-center gap-2 group"
+        >
+          <Smartphone className="w-4 h-4 text-[#15966A] group-hover:scale-110 transition-transform" />
+          <span>Launch Phone Simulator</span>
+          <ArrowRight className="w-4 h-4 text-[#15966A] group-hover:translate-x-0.5 transition-transform" />
+        </button>
       </div>
 
       {/* Quick Action Bar */}

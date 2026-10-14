@@ -133,15 +133,24 @@ export const ShareEvidencePage: React.FC = () => {
 
   return (
     <div className="space-y-6 max-w-4xl mx-auto">
-      {/* Title */}
-      <div>
-        <h2 className="text-xl sm:text-2xl font-extrabold text-[#18392D] tracking-tight flex items-center gap-2">
-          <Smartphone className="w-6 h-6 text-[#15966A]" />
-          <span>Share to Rivo — Evidence Entry</span>
-        </h2>
-        <p className="text-xs sm:text-sm text-[#718078] mt-0.5">
-          Paste WhatsApp message text or upload screenshot from parents. AI extracts candidate fields for review.
-        </p>
+      {/* Title & Simulator Trigger */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#18392D] tracking-tight flex items-center gap-2">
+            <Smartphone className="w-6 h-6 text-[#15966A]" />
+            <span>Share to Rivo — Evidence Entry</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-[#718078] mt-0.5">
+            Paste WhatsApp message text or upload screenshot from parents. AI extracts candidate fields for review.
+          </p>
+        </div>
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent('rivo:open-simulator'))}
+          className="bg-linear-to-r from-[#18392D] to-[#15966A] hover:opacity-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-xs flex items-center gap-2 shrink-0 cursor-pointer self-start sm:self-auto"
+        >
+          <Smartphone className="w-4 h-4 text-emerald-300" />
+          <span>📱 Open Phone Simulator</span>
+        </button>
       </div>
 
       {/* Critical Trust & Safety Callout */}

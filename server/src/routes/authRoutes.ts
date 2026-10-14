@@ -130,7 +130,7 @@ router.post('/login', authRateLimiter, async (req: Request, res: Response): Prom
       user = await User.create({
         email: 'demo.teacher@rivo.app',
         passwordHash,
-        name: 'Ananya Natarajan',
+        name: 'Veda',
         academyName: 'Naatyavedam',
         upiId: 'naatyavedam@upi',
         phone: '+91 98450 12345',
@@ -157,10 +157,18 @@ router.post('/login', authRateLimiter, async (req: Request, res: Response): Prom
       return;
     }
 
-    // Ensure academyName is Naatyavedam
+    // Ensure academyName is Naatyavedam and name is Veda
+    let shouldSaveUser = false;
     if (user.isDemo && user.academyName !== 'Naatyavedam') {
       user.academyName = 'Naatyavedam';
       user.upiId = 'naatyavedam@upi';
+      shouldSaveUser = true;
+    }
+    if (user.isDemo && user.name !== 'Veda') {
+      user.name = 'Veda';
+      shouldSaveUser = true;
+    }
+    if (shouldSaveUser) {
       await user.save();
     }
 
@@ -202,7 +210,7 @@ router.post('/demo-login', async (req: Request, res: Response): Promise<void> =>
       demoUser = await User.create({
         email: demoEmail,
         passwordHash,
-        name: 'Ananya Natarajan',
+        name: 'Veda',
         academyName: 'Naatyavedam',
         upiId: 'naatyavedam@upi',
         phone: '+91 98450 12345',
@@ -212,10 +220,18 @@ router.post('/demo-login', async (req: Request, res: Response): Promise<void> =>
       // Seed rich realistic demo data for the academy
       await seedDemoDataForTeacher(demoUser._id);
     } else {
-      // Ensure academy name is Naatyavedam
+      // Ensure academy name is Naatyavedam and teacher name is Veda
+      let shouldSave = false;
       if (demoUser.academyName !== 'Naatyavedam') {
         demoUser.academyName = 'Naatyavedam';
         demoUser.upiId = 'naatyavedam@upi';
+        shouldSave = true;
+      }
+      if (demoUser.name !== 'Veda') {
+        demoUser.name = 'Veda';
+        shouldSave = true;
+      }
+      if (shouldSave) {
         await demoUser.save();
       }
     }

@@ -33,7 +33,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     teacherId: tId,
     name: 'Super Seniors',
     schedule: 'Mon, Wed, Fri (6:00 PM - 7:30 PM)',
-    instructor: 'Ananya Natarajan',
+    instructor: 'Veda',
     isActive: true,
   });
 
@@ -41,7 +41,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     teacherId: tId,
     name: 'Seniors',
     schedule: 'Tue, Thu, Sat (5:30 PM - 7:00 PM)',
-    instructor: 'Ananya Natarajan',
+    instructor: 'Veda',
     isActive: true,
   });
 
@@ -49,7 +49,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     teacherId: tId,
     name: 'Juniors',
     schedule: 'Mon, Wed, Fri (4:30 PM - 5:30 PM)',
-    instructor: 'Ananya Natarajan',
+    instructor: 'Veda',
     isActive: true,
   });
 
@@ -57,7 +57,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     teacherId: tId,
     name: 'Sub Juniors',
     schedule: 'Saturday & Sunday (10:00 AM - 11:00 AM)',
-    instructor: 'Ananya Natarajan',
+    instructor: 'Veda',
     isActive: true,
   });
 
@@ -73,7 +73,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     teacherId: tId,
     name: 'EIPL Adults',
     schedule: 'Sat & Sun (8:00 AM - 9:30 AM)',
-    instructor: 'Ananya Natarajan',
+    instructor: 'Veda',
     isActive: true,
   });
 
@@ -189,7 +189,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-02T11:00:00Z'),
-    verifiedBy: 'Ananya Natarajan',
+    verifiedBy: 'Veda',
     verificationReason: 'Verified against bank credit and WhatsApp receipt',
     allocatedAmount: 1500,
     unallocatedAmount: 0,
@@ -226,7 +226,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-03T15:00:00Z'),
-    verifiedBy: 'Ananya Natarajan',
+    verifiedBy: 'Veda',
     verificationReason: 'Family payment verified for 2 siblings',
     allocatedAmount: 3000,
     unallocatedAmount: 0,
@@ -274,7 +274,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-04T10:00:00Z'),
-    verifiedBy: 'Ananya Natarajan',
+    verifiedBy: 'Veda',
     verificationReason: 'Part payment agreed with guardian',
     allocatedAmount: 1000,
     unallocatedAmount: 0,
@@ -306,7 +306,7 @@ export async function seedDemoDataForTeacher(teacherId: Types.ObjectId | string)
     source: 'csv_import',
     status: 'teacher_verified',
     verifiedAt: new Date('2026-10-07T17:00:00Z'),
-    verifiedBy: 'Ananya Natarajan',
+    verifiedBy: 'Veda',
     verificationReason: 'Money credited to academy account, student identity pending verification',
     allocatedAmount: 0,
     unallocatedAmount: 2500,

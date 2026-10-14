@@ -566,13 +566,13 @@ describe('Rivo Fee Reconciliation Business Rules Suite', () => {
     // Simulate teacher manual verification
     txn.status = 'teacher_verified';
     txn.verifiedAt = new Date();
-    txn.verifiedBy = 'Ananya Natarajan';
+    txn.verifiedBy = 'Veda';
     txn.verificationReason = 'Cross-checked with ICICI Netbanking passbook entry';
     await txn.save();
 
     const saved = await PaymentTransaction.findById(txn._id);
     expect(saved?.status).toBe('teacher_verified');
-    expect(saved?.verifiedBy).toBe('Ananya Natarajan');
+    expect(saved?.verifiedBy).toBe('Veda');
     expect(saved?.verificationReason).toBe('Cross-checked with ICICI Netbanking passbook entry');
   });
 

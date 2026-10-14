@@ -82,7 +82,7 @@ export const AddBatchModal: React.FC<AddBatchModalProps> = ({ isOpen, onClose, o
             type="text"
             value={instructor}
             onChange={e => setInstructor(e.target.value)}
-            placeholder="e.g. Ananya Natarajan"
+            placeholder="e.g. Veda"
             className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2EBE5] text-sm focus:border-[#15966A] focus:outline-hidden"
           />
         </div>
